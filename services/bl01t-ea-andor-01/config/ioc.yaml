@@ -1,9 +1,8 @@
-# yaml-language-server: $schema=https://github.com/epics-containers/ioc-template-example/releases/download/3.5.1/ibek.ioc.schema.json
+# yaml-language-server: $schema=https://github.com/epics-containers/ioc-adsimdetector/releases/download/2025.8.1/ibek.ioc.schema.json
 
 # TODO replace above with the generic IOC schema this IOC is based on
 ioc_name: "{{ _global.get_env('IOC_NAME') }}"
-
-description: REPLACE_WITH_DESCRIPTION
+description: Example simulated detector for BL01T
 
 entities:
   - type: epics.EpicsEnvSet
@@ -18,3 +17,13 @@ entities:
     IOC: "{{ ioc_name | upper }}"
 
   # - todo: Add more entities to make a meaningful IOC
+  - type: autosave.Autosave
+    P: "BL01T-EA-ANDOR-01:"
+
+  - type: ADSimDetector.simDetector
+    PORT: ANDOR.DET
+    P: BL01T-EA-ANDOR-01
+    R: ":DET:"
+    DATATYPE: 0   # Int8
+    WIDTH: 1024
+    HEIGHT: 1024

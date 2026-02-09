@@ -7,3 +7,6 @@ ioc-instance:
   # dataVolume:
   #   pvc: false
   #   hostPath: /dls/ixx/data
+
+  podAnnotations:
+    usb-compat: "enabled"
